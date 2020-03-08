@@ -10,6 +10,9 @@ namespace TimeSystem.Domain
         public int Id { get; set; }
         public DateTime Timestamp { get; set; }
         public DateTime Date { get; set; }
-        public User user { get; set; }
+        public User User { get; set; }
+        public Course Course { get; set; }
+        public bool Competitive { get; set; }
+
     }
 }

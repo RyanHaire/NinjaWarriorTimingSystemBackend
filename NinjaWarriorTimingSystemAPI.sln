@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NinjaWarriorTimingSystemAPI", "NinjaWarriorTimingSystemAPI\NinjaWarriorTimingSystemAPI.csproj", "{AF4D5214-753B-422B-8F59-1695514F3D1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSystem.Domain", "TimeSystem.Domain\TimeSystem.Domain.csproj", "{B2B4923B-A0BD-4B96-BA66-34FDBEF0BBF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSystem.Domain", "TimeSystem.Domain\TimeSystem.Domain.csproj", "{B2B4923B-A0BD-4B96-BA66-34FDBEF0BBF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSystem.Persistence", "TimeSystem.Persistence\TimeSystem.Persistence.csproj", "{579A3E2F-1FB7-4FF0-97FF-E558BA9A3BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B2B4923B-A0BD-4B96-BA66-34FDBEF0BBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B4923B-A0BD-4B96-BA66-34FDBEF0BBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B4923B-A0BD-4B96-BA66-34FDBEF0BBF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579A3E2F-1FB7-4FF0-97FF-E558BA9A3BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579A3E2F-1FB7-4FF0-97FF-E558BA9A3BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579A3E2F-1FB7-4FF0-97FF-E558BA9A3BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579A3E2F-1FB7-4FF0-97FF-E558BA9A3BDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

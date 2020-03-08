@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TimeSystem.Domain
 {
-    class User
+    public class User
     {
         public int Id { get; set; }
         public string Username { get; set; }

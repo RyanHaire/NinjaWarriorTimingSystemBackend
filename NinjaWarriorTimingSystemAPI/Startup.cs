@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TimeSystem.Persistence;
+using MySql.Data.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace NinjaWarriorTimingSystemAPI
 {
@@ -25,6 +28,10 @@ namespace NinjaWarriorTimingSystemAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.AddDbContext<TimingSystemDbContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"))
+            );
             services.AddControllers();
         }
 
