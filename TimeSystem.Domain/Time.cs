@@ -11,7 +11,7 @@ namespace TimeSystem.Domain
         public DateTime Timestamp { get; set; }
         public DateTime Date { get; set; }
         public User User { get; set; }
-        public Course Course { get; set; }
+        public SpeedWall SpeedWall { get; set; }
         public bool Competitive { get; set; }
 
     }

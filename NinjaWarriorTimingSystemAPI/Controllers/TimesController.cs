@@ -28,6 +28,12 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return await _context.Times.ToListAsync();
         }
 
+       /* [HttpGet]
+        public async Task<ActionResult<IEnumerable<Time>>> GetTimesWithCourse()
+        {
+
+        }*/
+
         // GET: api/Times/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Time>> GetTime(int id)

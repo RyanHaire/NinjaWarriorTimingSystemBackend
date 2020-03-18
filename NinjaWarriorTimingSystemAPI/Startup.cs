@@ -25,19 +25,22 @@ namespace NinjaWarriorTimingSystemAPI
 
         public IConfiguration Configuration { get; }
 
+        readonly string AllowCors = "AllowCors";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowCors", builder =>
+                options.AddPolicy(AllowCors, builder =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
+
             services.AddDbContext<TimingSystemDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
+
             services.AddControllers();
         }
 
@@ -48,8 +51,9 @@ namespace NinjaWarriorTimingSystemAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(AllowCors);
             app.UseHttpsRedirection();
+
 
             app.UseRouting();
 

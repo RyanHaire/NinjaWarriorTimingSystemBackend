@@ -12,48 +12,48 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CoursesController : ControllerBase
+    public class SpeedWallsController : ControllerBase
     {
         private readonly TimingSystemDbContext _context;
 
-        public CoursesController(TimingSystemDbContext context)
+        public SpeedWallsController(TimingSystemDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Courses
+        // GET: api/SpeedWalls
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
+        public async Task<ActionResult<IEnumerable<SpeedWall>>> GetSpeedWalls()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.SpeedWalls.ToListAsync();
         }
 
-        // GET: api/Courses/5
+        // GET: api/SpeedWalls/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Course>> GetCourse(int id)
+        public async Task<ActionResult<SpeedWall>> GetSpeedWall(int id)
         {
-            var course = await _context.Courses.FindAsync(id);
+            var speedWall = await _context.SpeedWalls.FindAsync(id);
 
-            if (course == null)
+            if (speedWall == null)
             {
                 return NotFound();
             }
 
-            return course;
+            return speedWall;
         }
 
-        // PUT: api/Courses/5
+        // PUT: api/SpeedWalls/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourse(int id, Course course)
+        public async Task<IActionResult> PutSpeedWall(int id, SpeedWall speedWall)
         {
-            if (id != course.Id)
+            if (id != speedWall.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(course).State = EntityState.Modified;
+            _context.Entry(speedWall).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CourseExists(id))
+                if (!SpeedWallExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Courses
+        // POST: api/SpeedWalls
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Course>> PostCourse(Course course)
+        public async Task<ActionResult<SpeedWall>> PostSpeedWall(SpeedWall speedWall)
         {
-            _context.Courses.Add(course);
+            _context.SpeedWalls.Add(speedWall);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCourse", new { id = course.Id }, course);
+            return CreatedAtAction("GetSpeedWall", new { id = speedWall.Id }, speedWall);
         }
 
-        // DELETE: api/Courses/5
+        // DELETE: api/SpeedWalls/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Course>> DeleteCourse(int id)
+        public async Task<ActionResult<SpeedWall>> DeleteSpeedWall(int id)
         {
-            var course = await _context.Courses.FindAsync(id);
-            if (course == null)
+            var speedWall = await _context.SpeedWalls.FindAsync(id);
+            if (speedWall == null)
             {
                 return NotFound();
             }
 
-            _context.Courses.Remove(course);
+            _context.SpeedWalls.Remove(speedWall);
             await _context.SaveChangesAsync();
 
-            return course;
+            return speedWall;
         }
 
-        private bool CourseExists(int id)
+        private bool SpeedWallExists(int id)
         {
-            return _context.Courses.Any(e => e.Id == id);
+            return _context.SpeedWalls.Any(e => e.Id == id);
         }
     }
 }
