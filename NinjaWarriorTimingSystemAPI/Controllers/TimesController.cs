@@ -28,11 +28,13 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return await _context.Times.ToListAsync();
         }
 
-       /* [HttpGet]
-        public async Task<ActionResult<IEnumerable<Time>>> GetTimesWithCourse()
+        [HttpGet]
+        [Route("speedwall/{id}")]
+        public async Task<ActionResult<IEnumerable<Time>>> GetTimesOfSpeedWall(int id)
         {
-
-        }*/
+            List<Time> times = await _context.Times.Where(t => t.SpeedWallId == id).ToListAsync();
+            return Ok(times);
+        }
 
         // GET: api/Times/5
         [HttpGet("{id}")]
@@ -111,6 +113,22 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         private bool TimeExists(int id)
         {
             return _context.Times.Any(e => e.Id == id);
+        }
+
+        [HttpGet]
+        [Route("start/")]
+        public ActionResult<TimeSpan> StartTimer()
+        {
+            Timer.Start();
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("stop/")]
+        public ActionResult<TimeSpan>EndTimer()
+        {
+            TimeSpan ts = Timer.Stop();
+            return Ok(ts);
         }
     }
 }
