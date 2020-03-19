@@ -21,6 +21,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             _context = context;
         }
 
+        // endpoint to get all the times
         // GET: api/Times
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Time>>> GetTimes()
@@ -28,20 +29,30 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return await _context.Times.ToListAsync();
         }
 
+        // endpoint to get all the times and users for a speed wall
         [HttpGet]
         [Route("speedwall/{id}")]
         public async Task<ActionResult<IEnumerable<Time>>> GetTimesOfSpeedWall(int id)
         {
-            List<Time> times = await _context.Times.Where(t => t.SpeedWallId == id).ToListAsync();
+            //List<Time> times = await _context.Times.Where(t => t.SpeedWallId == id).ToListAsync();
             //List<Time> Users =_context.Users.Where(times.UserId == times. )
+            /*var query = from user in _context.Users
+                        select new
+                        {
+                            user.FirstName,
+                            user.LastName,
+                            Times = user.Times.Where(t => t.SpeedWallId == id)
+                        };*/
             var query = from time in _context.Times
                         join user in _context.Users
                         on time.UserId equals user.Id
+                        where time.SpeedWallId == id
+                        orderby time.DateTime
                         select new
                         {
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            Times = user.Times.Where(t => t.SpeedWallId == id)
+                            time.DateTime,
+                            user.FirstName,
+                            user.LastName
                         };
             return Ok(await query.ToListAsync());
         }
