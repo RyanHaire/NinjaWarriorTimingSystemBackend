@@ -41,6 +41,11 @@ namespace NinjaWarriorTimingSystemAPI
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddControllers().AddNewtonsoftJson(opt =>
+           {
+               opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+           });
+
             services.AddControllers();
         }
 
@@ -52,8 +57,8 @@ namespace NinjaWarriorTimingSystemAPI
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors(AllowCors);
-            app.UseHttpsRedirection();
 
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

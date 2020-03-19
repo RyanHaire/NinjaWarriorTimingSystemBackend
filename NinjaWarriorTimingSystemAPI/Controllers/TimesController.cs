@@ -33,7 +33,17 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         public async Task<ActionResult<IEnumerable<Time>>> GetTimesOfSpeedWall(int id)
         {
             List<Time> times = await _context.Times.Where(t => t.SpeedWallId == id).ToListAsync();
-            return Ok(times);
+            //List<Time> Users =_context.Users.Where(times.UserId == times. )
+            var query = from time in _context.Times
+                        join user in _context.Users
+                        on time.UserId equals user.Id
+                        select new
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Times = user.Times.Where(t => t.SpeedWallId == id)
+                        };
+            return Ok(await query.ToListAsync());
         }
 
         // GET: api/Times/5
@@ -115,6 +125,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return _context.Times.Any(e => e.Id == id);
         }
 
+        // endpoint to start a timer
         [HttpGet]
         [Route("start/")]
         public ActionResult<TimeSpan> StartTimer()
@@ -123,6 +134,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return Ok();
         }
 
+        // endpoint to stop the timer
         [HttpGet]
         [Route("stop/")]
         public ActionResult<TimeSpan>EndTimer()
