@@ -73,6 +73,33 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
 
             return NoContent();
         }
+        [HttpGet]
+        public async Task<ActionResult<User>> Login(string userName, string password)
+        {
+            // authentication for hashcoded password will be done later
+            try
+            {
+                 var validUserID = (from User in _context.Users
+                                   where User.Username == userName
+                                   && User.Password == password
+                                   select User.Id).SingleOrDefault();
+                if (validUserID > 0)
+                {
+                    var user = await _context.Users.FindAsync(validUserID);
+                    return user;
+                    
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch(InvalidOperationException ex)
+            {}
+
+            return null;
+         
+        }
 
         // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

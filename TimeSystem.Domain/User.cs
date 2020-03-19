@@ -9,7 +9,9 @@ namespace TimeSystem.Domain
     public class User
     {
         public int Id { get; set; }
+        [Required]
         public string Username { get; set; }
+        [Required]
         public string Password { get; set; }
         [Column("first_name")]
         public string FirstName { get; set; }
