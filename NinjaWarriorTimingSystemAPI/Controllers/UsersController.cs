@@ -73,6 +73,8 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
 
             return NoContent();
         }
+
+        // endpoint for user login
         [HttpGet]
         public async Task<ActionResult<User>> Login(string userName, string password)
         {
@@ -95,7 +97,9 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
                 }
             }
             catch(InvalidOperationException ex)
-            {}
+            {
+                
+            }
 
             return null;
          

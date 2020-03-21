@@ -34,15 +34,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         [Route("speedwall/{id}")]
         public async Task<ActionResult<IEnumerable<Time>>> GetTimesOfSpeedWall(int id)
         {
-            //List<Time> times = await _context.Times.Where(t => t.SpeedWallId == id).ToListAsync();
-            //List<Time> Users =_context.Users.Where(times.UserId == times. )
-            /*var query = from user in _context.Users
-                        select new
-                        {
-                            user.FirstName,
-                            user.LastName,
-                            Times = user.Times.Where(t => t.SpeedWallId == id)
-                        };*/
+
             var query = from time in _context.Times
                         join user in _context.Users
                         on time.UserId equals user.Id
@@ -50,7 +42,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
                         orderby time.DateTime
                         select new
                         {
-                            time.DateTime,
+                            time = time.DateTime.ToString("mm:ss:ff"),
                             user.FirstName,
                             user.LastName
                         };
