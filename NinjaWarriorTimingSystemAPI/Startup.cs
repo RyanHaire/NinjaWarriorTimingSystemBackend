@@ -61,7 +61,12 @@ namespace NinjaWarriorTimingSystemAPI
 
             //app.UseHttpsRedirection();
 
-            app.UseDeveloperExceptionPage();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | 
+                Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
