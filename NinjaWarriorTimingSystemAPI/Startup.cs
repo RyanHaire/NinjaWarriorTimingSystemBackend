@@ -34,7 +34,8 @@ namespace NinjaWarriorTimingSystemAPI
                 options.AddPolicy(AllowCors, builder =>
                 {
                     //builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
-                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://142.55.32.86:50171");
+                    //builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://142.55.32.86:50171");
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
 
