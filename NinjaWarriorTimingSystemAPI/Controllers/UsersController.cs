@@ -74,6 +74,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return NoContent();
         }
 
+        /*
         // endpoint for user login
         [HttpGet]
         public async Task<ActionResult<User>> Login(string userName, string password)
@@ -103,7 +104,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
 
             return null;
          
-        }
+        }*/
 
         // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

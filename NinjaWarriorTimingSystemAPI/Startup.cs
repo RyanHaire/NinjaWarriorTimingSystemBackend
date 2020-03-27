@@ -54,19 +54,27 @@ namespace NinjaWarriorTimingSystemAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseCors(AllowCors);
 
             //app.UseHttpsRedirection();
+            app.UseDeveloperExceptionPage();
+            
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            // will look in wwwroot folder for index.html
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
+
+            /*app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | 
                 Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-            });
+            });*/
 
             app.UseRouting();
 
@@ -75,6 +83,7 @@ namespace NinjaWarriorTimingSystemAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+               // endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
