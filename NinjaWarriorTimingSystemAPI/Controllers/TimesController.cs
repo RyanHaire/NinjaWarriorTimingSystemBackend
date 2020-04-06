@@ -129,6 +129,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         }
 
         // endpoint to start a timer
+        // /api/times/start/
         [HttpGet]
         [Route("start/")]
         public ActionResult<TimeSpan> StartTimer()
@@ -138,11 +139,13 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         }
 
         // endpoint to stop the timer
+        // /api/times/start/
         [HttpGet]
         [Route("stop/")]
         public ActionResult<TimeSpan>EndTimer()
         {
             TimeSpan ts = Timer.Stop();
+            Timer.
             return Ok(ts);
         }
     }

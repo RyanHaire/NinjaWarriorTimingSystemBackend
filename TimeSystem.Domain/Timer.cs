@@ -19,6 +19,7 @@ namespace TimeSystem.Domain
         {
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
+            stopWatch.Reset();
             return ts;
         }
     }
