@@ -28,6 +28,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
+
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
@@ -39,6 +40,19 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
                 return NotFound();
             }
 
+            return user;
+        }
+
+        // GET: api/Users/ryanhaire
+        [HttpGet("username/{username}")]
+        public async Task<ActionResult<User>> GetUserByUsername(string username)
+        {
+            var user = await _context.Users.Where(u => u.Username == username).FirstAsync();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
             return user;
         }
 
@@ -137,6 +151,11 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        private bool UserExistsByUsername(string username)
+        {
+            return _context.Users.Any(e => e.Username == username);
         }
     }
 }

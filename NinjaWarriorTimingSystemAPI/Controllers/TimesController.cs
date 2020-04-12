@@ -49,6 +49,24 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
             return Ok(await query.ToListAsync());
         }
 
+        [HttpGet]
+        [Route("speedwall/{id}/{username}")]
+        public async Task<ActionResult<IEnumerable<Time>>> GetTimesOfSpeedWallForUser(int id, string username)
+        {
+            var query = from time in _context.Times
+                        join user in _context.Users
+                        on time.UserId equals user.Id
+                        where time.SpeedWallId == id 
+                        && user.Username == username
+                        orderby time.DateTime
+                        select new
+                        {
+                            time = time.DateTime.ToString("mm:ss:ff"),
+                            date = time.DateTime.ToString("yyyy-MM-dd")
+                        };
+            return Ok(await query.ToListAsync());
+        }
+
         // GET: api/Times/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Time>> GetTime(int id)
@@ -135,6 +153,7 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         public ActionResult<TimeSpan> StartTimer()
         {
             Timer.Start();
+            // Ok() return status code 200
             return Ok();
         }
 
@@ -145,7 +164,6 @@ namespace NinjaWarriorTimingSystemAPI.Controllers
         public ActionResult<TimeSpan>EndTimer()
         {
             TimeSpan ts = Timer.Stop();
-            Timer.
             return Ok(ts);
         }
     }
